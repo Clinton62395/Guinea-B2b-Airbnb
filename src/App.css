@@ -1,0 +1,58 @@
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+* ::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Dans votre CSS global */
+/* Ajoutez ce CSS dans votre fichier global */
+
+
+.swiper-pagination-bullet-active {
+  background: white !important;
+  transform: scale(1.2);
+}
+
+.swiper-pagination {
+  bottom: 10px !important;
+}
+
+
+
+
+.tracking-wide{
+  font-size: 4rem;              /* texte grand */
+  font-weight: 800;             /* épais */
+  text-transform: uppercase;    /* majuscules */
+  color: transparent;           /* remplissage transparent */
+  -webkit-text-stroke: 2px #fff;/* contour blanc */
+  letter-spacing: 2px;          /* espacement des lettres */
+}
+/* Flèches visibles seulement au survol du slider */
+.swiper {
+  position: relative;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.swiper:hover .swiper-button-next,
+.swiper:hover .swiper-button-prev {
+
+  opacity: 1;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fff !important;       /* couleur du bouton */
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 5px !important;    /* taille de l’icône/flèche */
+  color: #fff !important;       /* couleur de l’icône */
+}
