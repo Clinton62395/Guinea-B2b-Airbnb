@@ -151,9 +151,9 @@ export const Navbar = () => {
 
       {currentModal && (
         <AuthModal
-          onclose={handleCloseModals}
+          onClose={handleCloseModals}
           mode={currentModal}
-          isOpen={true}
+          isOpen={currentModal !== null}
           onSwitchMode={handleSwitchMode}
           text={
             currentModal === "register"
