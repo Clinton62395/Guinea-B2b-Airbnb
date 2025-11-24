@@ -14,10 +14,10 @@ export const Navbar = () => {
   const handleRegisterOpen = () => setCurrentModal("register");
 
   const handleLoginOpen = () => setCurrentModal("login");
+  const handleSwitchMode = (newSwitch) => setCurrentModal(newSwitch);
 
   const handleCloseModals = () => setCurrentModal(null);
 
-  const handleSwitchMode = (newSwitch) => setCurrentModal(newSwitch);
   const hideNavbar =
     location.pathname === "/login" || location.pathname === "/register";
 
@@ -147,33 +147,34 @@ export const Navbar = () => {
           </div>
         )}
       </nav>
-
       {/* Modals - EN DEHORS de la navbar pour éviter les problèmes de z-index */}
-      {currentModal && (
-        <AuthModal
-          onclose={handleCloseModals}
-          mode={currentModal}
-          isOpen={currentModal !== null}
-          onSwitchMode={handleSwitchMode}
-          text="Create your account"
-          Policies="I agree to all the Terms and Privacy Policies"
-          registerLabel="Register Now"
-          alreadyAccound="Already have an account?"
-          login="Login"
-          path="/login"
-        />
-      )}
 
       {currentModal && (
         <AuthModal
           onclose={handleCloseModals}
           mode={currentModal}
-          isOpen={currentModal !== null}
+          isOpen={true}
           onSwitchMode={handleSwitchMode}
-          text="Login to your account"
-          Policies="Remember me"
-          registerLabel="Sign In"
-          alreadyAccound="Don't have an account?"
+          text={
+            currentModal === "register"
+              ? "Create your account"
+              : "Login to your account"
+          }
+          Policies={
+            currentModal === "register"
+              ? "I agree to all the Terms and Privacy Policies"
+              : "Remember me"
+          }
+          registerLabel={
+            currentModal === "register" ? "Register Now" : "Sign In"
+          }
+          alreadyAccound={
+            currentModal === "register"
+              ? "Already have an account?"
+              : "Don't have an account?"
+          }
+          login={currentModal === "register" ? "Login" : "Register"}
+          path={currentModal === "register" ? "/login" : "/register"}
         />
       )}
     </>

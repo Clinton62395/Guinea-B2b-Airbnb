@@ -3,6 +3,45 @@ import { X, Eye, EyeOff } from "lucide-react";
 import { PhoneInput } from "react-international-phone";
 import colors from "../colorsPalette";
 import "react-international-phone/style.css";
+import { motion, AnimatePresence } from "framer-motion";
+
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+import * as yup from "yup";
+import { toast } from "react-toastify";
+
+const registerSchema = yup.object({
+  firstName: yup.string().required("First name is required"),
+  lastName: yup.string().required("Last name is required"),
+  email: yup
+    .string()
+    .email("Invalid email format")
+    .required("Email is required"),
+  password: yup
+    .string()
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is required"),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("password"), null], "Passwords must match")
+    .required("Confirm Password is required"),
+  phoneNumber: yup
+    .string()
+    .max(9, "phone number cannot be more than 9 digits")
+    .required("the number  is required"),
+});
+
+const loginSchema = yup.object({
+  email: yup
+    .string()
+    .email("Invalid email format")
+    .required("Email is required"),
+  password: yup
+    .string()
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is required"),
+});
 
 export const AuthModal = ({
   text = "Create your account",
@@ -13,6 +52,7 @@ export const AuthModal = ({
   isOpen,
   mode = "register",
   onClose,
+
   onSwitchMode,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -21,6 +61,16 @@ export const AuthModal = ({
   const [isVisible, setIsVisible] = useState(false);
 
   const isRegister = mode === "register";
+  const schema = isRegister ? registerSchema : loginSchema;
+
+  // form validation react yup form
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   // Animation d'entrée
   useEffect(() => {
@@ -44,6 +94,13 @@ export const AuthModal = ({
 
   const handleSwitchMode = () => {
     onSwitchMode?.(isRegister ? "login" : "register");
+  };
+
+  // handleSubmit data api
+
+  const onSubmit = (data) => {
+    console.log("data submitted successful", data);
+    toast.success("data submitted");
   };
 
   // Si le modal n'est pas ouvert, ne rien render
@@ -107,9 +164,8 @@ export const AuthModal = ({
             aria-hidden="true"
           />
 
-          {/* Contenu de l'image - POSITION CORRIGÉE */}
           <div className="relative z-10 w-full h-full flex items-center justify-center p-8">
-            <div className="text-center">
+            <div className="text-center absolute top-12">
               <span
                 className="text-white text-3xl font-bold mb-4 block tracking-wide"
                 style={{ textShadow: "0 2px 4px rgba(0,0,0,0.5)" }}
@@ -145,15 +201,17 @@ export const AuthModal = ({
               </p>
             </div>
 
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
               {/* First & Last Name - SEULEMENT pour register */}
               {isRegister && (
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <input
                       type="text"
+                      {...register("firstName")}
                       placeholder="First Name"
-                      className="w-full p-3 border rounded-lg transition-all duration-200 focus:ring-2 focus:ring-offset-1"
+                      className={`w-full p-3 border rounded-lg transition-all duration-200 focus:ring-2 focus:ring-offset-1 border-green-500"
+                      }`}
                       style={{
                         borderColor: colors.neutral.borderLight,
                         backgroundColor: colors.neutral.bgCard,
@@ -168,10 +226,28 @@ export const AuthModal = ({
                         e.target.style.boxShadow = "none";
                       }}
                     />
+                    <AnimatePresence>
+                      {errors.firstName && (
+                        <motion.p
+                          initial={{ opacity: 0, y: -20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -20 }}
+                          transition={{
+                            duration: 0.2,
+                            type: "spring",
+                            stiffness: 500,
+                          }}
+                          className="text-sm font-medium text-red-600"
+                        >
+                          {errors.firstName.message}
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
                   </div>
                   <div>
                     <input
                       type="text"
+                      {...register("lastName")}
                       placeholder="Last Name"
                       className="w-full p-3 border rounded-lg transition-all duration-200 focus:ring-2 focus:ring-offset-1"
                       style={{
@@ -188,6 +264,24 @@ export const AuthModal = ({
                         e.target.style.boxShadow = "none";
                       }}
                     />
+
+                    <AnimatePresence>
+                      {errors.lastName && (
+                        <motion.p
+                          initial={{ opacity: 0, y: -20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -20 }}
+                          transition={{
+                            duration: 0.2,
+                            type: "spring",
+                            stiffness: 500,
+                          }}
+                          className="text-sm font-medium text-red-600"
+                        >
+                          {errors.lastName.message}
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
                   </div>
                 </div>
               )}
@@ -196,6 +290,7 @@ export const AuthModal = ({
               <div>
                 <input
                   type="email"
+                  {...register("email")}
                   placeholder="Email"
                   className="w-full p-3 border rounded-lg transition-all duration-200 focus:ring-2 focus:ring-offset-1"
                   style={{
@@ -212,6 +307,24 @@ export const AuthModal = ({
                     e.target.style.boxShadow = "none";
                   }}
                 />
+
+                <AnimatePresence>
+                  {errors.email && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{
+                        duration: 0.2,
+                        type: "spring",
+                        stiffness: 500,
+                      }}
+                      className="text-sm font-medium text-red-600"
+                    >
+                      {errors.email.message}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
               </div>
 
               {/* Passwords */}
@@ -224,6 +337,7 @@ export const AuthModal = ({
                   <input
                     type={showPassword ? "text" : "password"}
                     placeholder="Password"
+                    {...register("password")}
                     className="w-full p-3 border rounded-lg pr-12 transition-all duration-200 focus:ring-2 focus:ring-offset-1"
                     style={{
                       borderColor: colors.neutral.borderLight,
@@ -239,9 +353,26 @@ export const AuthModal = ({
                       e.target.style.boxShadow = "none";
                     }}
                   />
+                  <AnimatePresence>
+                    {errors.password && (
+                      <motion.p
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{
+                          duration: 0.2,
+                          type: "spring",
+                          stiffness: 500,
+                        }}
+                        className="text-sm font-medium text-red-600"
+                      >
+                        {errors.password.message}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
                   <button
                     type="button"
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 p-1 rounded transition-colors hover:bg-gray-100"
+                    className="absolute right-5 top-1/2 transform -translate-y-1/2 p-1 rounded transition-colors hover:bg-gray-100"
                     onClick={() => setShowPassword(!showPassword)}
                     style={{ color: colors.neutral.textSecondary }}
                   >
@@ -255,6 +386,7 @@ export const AuthModal = ({
                     <input
                       type={showConfirmPassword ? "text" : "password"}
                       placeholder="Confirm Password"
+                      {...register("confirmPassword")}
                       className="w-full p-3 border rounded-lg pr-12 transition-all duration-200 focus:ring-2 focus:ring-offset-1"
                       style={{
                         borderColor: colors.neutral.borderLight,
@@ -270,9 +402,26 @@ export const AuthModal = ({
                         e.target.style.boxShadow = "none";
                       }}
                     />
+                    <AnimatePresence>
+                      {errors.confirmPassword && (
+                        <motion.p
+                          initial={{ opacity: 0, y: -20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -20 }}
+                          transition={{
+                            duration: 0.2,
+                            type: "spring",
+                            stiffness: 500,
+                          }}
+                          className="text-sm font-medium text-red-600"
+                        >
+                          {errors.confirmPassword.message}
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
                     <button
                       type="button"
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 p-1 rounded transition-colors hover:bg-gray-100"
+                      className="absolute right-5 top-1/2 transform -translate-y-1/2 p-1 rounded transition-colors hover:bg-gray-100"
                       onClick={() =>
                         setShowConfirmPassword(!showConfirmPassword)
                       }
@@ -323,6 +472,7 @@ export const AuthModal = ({
               >
                 <input
                   type="checkbox"
+                  {...register("confirmPoliciess")}
                   className="mr-3 mt-0.5 transition-all duration-200 group-hover:scale-110"
                   style={{ accentColor: colors.primary.main }}
                 />
