@@ -14,7 +14,7 @@ export const colors = {
     textPrimary: "#222222", // Titres, textes principaux, contenu important
     textSecondary: "#717171", // Descriptions, labels secondaires, métadonnées
     textDisabled: "#B0B0B0", // Textes non modifiables, champs désactivés
-    borderLight: "#DDDDDD", // Bordures fines, séparateurs, contours subtils
+    borderLight: "#07689F", // Bordures fines, séparateurs, contours subtils
     borderMedium: "#BBBBBB", // Bordures plus visibles, états de focus
     bgSection: "#F7F7F7", // Arrière-plan des sections, zones de séparation
     bgCard: "#FFFFFF", // Cartes, modales, surfaces surélevées

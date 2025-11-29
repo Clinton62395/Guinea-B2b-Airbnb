@@ -204,7 +204,7 @@ export const AuthModal = ({
             <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
               {/* First & Last Name - SEULEMENT pour register */}
               {isRegister && (
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <input
                       type="text"

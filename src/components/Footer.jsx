@@ -1,22 +1,56 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 export const Footer = () => {
   return (
     <footer className="bg-[#1E2A38] text-white px-6 py-10">
       {/* Promo Section */}
-      <div className="mb-10">
-        <h2 className="text-xl font-bold mb-2">
-          Go Further With The EasySet24 App
-        </h2>
-        <p className="text-sm text-gray-300 mb-2">
-          Enjoy savings on chosen hotels and flights when you book through the
-          EasySet24 website. Additionally, earn One Key Cash for every booking
-          made through the app.
-        </p>
-        <p className="text-xs text-gray-400">Secured By Europe GTP</p>
-        <div className="flex gap-4 mt-4">
-          <img src="/icons/appstore.png" alt="App Store" className="h-8" />
-          <img src="/icons/googleplay.png" alt="Google Play" className="h-8" />
+      <div className=" flex items-center justify-between mb-10">
+        <div>
+          <h2 className="text-xl font-bold mb-2">
+            Go Further With The EasySet24 App
+          </h2>
+          <p className="text-sm text-gray-300 mb-2">
+            Enjoy savings on chosen hotels and flights when you book through the
+            EasySet24 website. <br /> Additionally, earn One Key Cash for every
+            booking made through the app.
+          </p>
+          <p className="text-xs text-gray-400">Secured By Europe GTP</p>
+        </div>
+
+        <div className="flex flex-col gap-4 mt-4">
+          <motion.button
+            className="bg-white rounded-md px-2"
+            whileHover={{ scale: 1.05 }} // grossit légèrement au hover
+            whileTap={{ scale: 0.95 }} // effet "clic"
+            initial={{ opacity: 0, y: 20 }} // état initial
+            animate={{ opacity: 1, y: 0 }} // état final
+            transition={{ duration: 0.4 }}
+          >
+            <motion.img
+              src="/google store.jpeg"
+              alt="google Store"
+              className="h-12 w-full"
+              whileHover={{ rotate: 2 }} // petite rotation au hover
+              transition={{ type: "spring", stiffness: 300 }}
+            />
+          </motion.button>
+
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.2 }} // apparition décalée
+          >
+            <motion.img
+              src="/ios.png"
+              alt="ios Play"
+              className="h-10 w-full"
+              whileHover={{ rotate: -2 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            />
+          </motion.button>
         </div>
       </div>
 

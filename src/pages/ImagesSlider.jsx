@@ -1,5 +1,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { motion } from "framer-motion";
 
 // Import Swiper styles
 import "swiper/css";
@@ -23,6 +24,10 @@ export const properties = [
     dates: "23 – 28 jan",
     price: "450 000",
     currency: "GNF",
+    discount: 30,
+    isTrending: true,
+    isSpecialOffer: true,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=500",
       "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=500",
@@ -42,6 +47,10 @@ export const properties = [
     dates: "1 – 6 déc",
     price: "1 200 000",
     currency: "GNF",
+    discount: 25,
+    isTrending: true,
+    isSpecialOffer: false,
+    lastSearched: "2024-01-15",
     images: [
       "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=500",
       "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=500",
@@ -61,6 +70,10 @@ export const properties = [
     dates: "19 – 24 jan",
     price: "900 000",
     currency: "GNF",
+    discount: 15,
+    isTrending: false,
+    isSpecialOffer: true,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=500",
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=500",
@@ -80,6 +93,10 @@ export const properties = [
     dates: "10 – 15 fév",
     price: "150 000",
     currency: "GNF",
+    discount: 10,
+    isTrending: false,
+    isSpecialOffer: false,
+    lastSearched: "2024-01-10",
     images: [
       "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=500",
       "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=500",
@@ -99,6 +116,10 @@ export const properties = [
     dates: "5 – 12 mar",
     price: "2 100 000",
     currency: "GNF",
+    discount: 20,
+    isTrending: true,
+    isSpecialOffer: true,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500",
       "https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=500",
@@ -118,6 +139,10 @@ export const properties = [
     dates: "30 jan – 4 fév",
     price: "180 000",
     currency: "GNF",
+    discount: 5,
+    isTrending: false,
+    isSpecialOffer: false,
+    lastSearched: "2024-01-08",
     images: [
       "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?w=500",
       "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=500",
@@ -137,6 +162,10 @@ export const properties = [
     dates: "14 – 19 fév",
     price: "380 000",
     currency: "GNF",
+    discount: 15,
+    isTrending: true,
+    isSpecialOffer: true,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500",
       "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=500",
@@ -156,6 +185,10 @@ export const properties = [
     dates: "1 – 8 mar",
     price: "1 800 000",
     currency: "GNF",
+    discount: 30,
+    isTrending: false,
+    isSpecialOffer: true,
+    lastSearched: "2024-01-12",
     images: [
       "https://images.unsplash.com/photo-1575517111836-8e82de8e6abd?w=500",
       "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500",
@@ -175,6 +208,10 @@ export const properties = [
     dates: "5 – 10 fév",
     price: "280 000",
     currency: "GNF",
+    discount: 10,
+    isTrending: true,
+    isSpecialOffer: false,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1548611635-b6e7847d390d?w=500",
       "https://images.unsplash.com/photo-1505873242700-f289a29e1e0f?w=500",
@@ -194,6 +231,10 @@ export const properties = [
     dates: "25 – 30 jan",
     price: "550 000",
     currency: "GNF",
+    discount: 20,
+    isTrending: true,
+    isSpecialOffer: true,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=500",
       "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500",
@@ -213,6 +254,10 @@ export const properties = [
     dates: "20 – 25 fév",
     price: "320 000",
     currency: "GNF",
+    discount: 15,
+    isTrending: false,
+    isSpecialOffer: false,
+    lastSearched: "2024-01-09",
     images: [
       "https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=500",
       "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=500",
@@ -232,6 +277,10 @@ export const properties = [
     dates: "10 – 15 mar",
     price: "420 000",
     currency: "GNF",
+    discount: 10,
+    isTrending: true,
+    isSpecialOffer: false,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=500",
       "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=500",
@@ -251,6 +300,10 @@ export const properties = [
     dates: "8 – 13 fév",
     price: "340 000",
     currency: "GNF",
+    discount: 12,
+    isTrending: false,
+    isSpecialOffer: false,
+    lastSearched: "2024-01-11",
     images: [
       "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=500",
       "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=500",
@@ -270,6 +323,10 @@ export const properties = [
     dates: "3 – 10 mar",
     price: "1 500 000",
     currency: "GNF",
+    discount: 25,
+    isTrending: true,
+    isSpecialOffer: true,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1575517111836-8e82de8e6abd?w=500",
       "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500",
@@ -289,6 +346,10 @@ export const properties = [
     dates: "28 fév – 6 mar",
     price: "2 600 000",
     currency: "GNF",
+    discount: 35,
+    isTrending: true,
+    isSpecialOffer: true,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500",
       "https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=500",
@@ -308,6 +369,10 @@ export const properties = [
     dates: "29 jan – 3 fév",
     price: "200 000",
     currency: "GNF",
+    discount: 8,
+    isTrending: false,
+    isSpecialOffer: false,
+    lastSearched: "2024-01-14",
     images: [
       "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?w=500",
       "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=500",
@@ -327,6 +392,10 @@ export const properties = [
     dates: "12 – 17 fév",
     price: "480 000",
     currency: "GNF",
+    discount: 18,
+    isTrending: true,
+    isSpecialOffer: false,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500",
       "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=500",
@@ -346,6 +415,10 @@ export const properties = [
     dates: "7 – 14 mar",
     price: "3 100 000",
     currency: "GNF",
+    discount: 30,
+    isTrending: true,
+    isSpecialOffer: true,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=500",
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=500",
@@ -365,6 +438,10 @@ export const properties = [
     dates: "6 – 11 fév",
     price: "220 000",
     currency: "GNF",
+    discount: 10,
+    isTrending: false,
+    isSpecialOffer: false,
+    lastSearched: "2024-01-13",
     images: [
       "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=500",
       "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=500",
@@ -384,6 +461,10 @@ export const properties = [
     dates: "31 jan – 5 fév",
     price: "620 000",
     currency: "GNF",
+    discount: 22,
+    isTrending: true,
+    isSpecialOffer: true,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=500",
       "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500",
@@ -403,6 +484,10 @@ export const properties = [
     dates: "15 – 20 fév",
     price: "750 000",
     currency: "GNF",
+    discount: 20,
+    isTrending: false,
+    isSpecialOffer: true,
+    lastSearched: "2024-01-16",
     images: [
       "https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=500",
       "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=500",
@@ -422,6 +507,10 @@ export const properties = [
     dates: "8 – 13 mar",
     price: "460 000",
     currency: "GNF",
+    discount: 12,
+    isTrending: true,
+    isSpecialOffer: false,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=500",
       "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=500",
@@ -441,6 +530,10 @@ export const properties = [
     dates: "9 – 14 fév",
     price: "410 000",
     currency: "GNF",
+    discount: 18,
+    isTrending: true,
+    isSpecialOffer: true,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500",
       "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=500",
@@ -460,6 +553,10 @@ export const properties = [
     dates: "12 – 19 mar",
     price: "3 500 000",
     currency: "GNF",
+    discount: 35,
+    isTrending: false,
+    isSpecialOffer: true,
+    lastSearched: "2024-01-17",
     images: [
       "https://images.unsplash.com/photo-1575517111836-8e82de8e6abd?w=500",
       "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500",
@@ -479,6 +576,10 @@ export const properties = [
     dates: "25 fév – 2 mar",
     price: "2 800 000",
     currency: "GNF",
+    discount: 40,
+    isTrending: true,
+    isSpecialOffer: true,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500",
       "https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=500",
@@ -498,6 +599,10 @@ export const properties = [
     dates: "18 – 25 mar",
     price: "2 200 000",
     currency: "GNF",
+    discount: 28,
+    isTrending: true,
+    isSpecialOffer: true,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500",
       "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=500",
@@ -517,6 +622,10 @@ export const properties = [
     dates: "22 – 27 fév",
     price: "680 000",
     currency: "GNF",
+    discount: 15,
+    isTrending: false,
+    isSpecialOffer: false,
+    lastSearched: "2024-01-18",
     images: [
       "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=500",
       "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=500",
@@ -536,6 +645,10 @@ export const properties = [
     dates: "5 – 10 mar",
     price: "390 000",
     currency: "GNF",
+    discount: 12,
+    isTrending: true,
+    isSpecialOffer: false,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=500",
       "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=500",
@@ -555,6 +668,10 @@ export const properties = [
     dates: "16 – 21 fév",
     price: "350 000",
     currency: "GNF",
+    discount: 10,
+    isTrending: false,
+    isSpecialOffer: false,
+    lastSearched: "2024-01-19",
     images: [
       "https://images.unsplash.com/photo-1548611635-b6e7847d390d?w=500",
       "https://images.unsplash.com/photo-1505873242700-f289a29e1e0f?w=500",
@@ -574,6 +691,10 @@ export const properties = [
     dates: "11 – 16 mar",
     price: "520 000",
     currency: "GNF",
+    discount: 14,
+    isTrending: false,
+    isSpecialOffer: false,
+    lastSearched: "2024-01-20",
     images: [
       "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?w=500",
       "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=500",
@@ -593,6 +714,10 @@ export const properties = [
     dates: "28 fév – 5 mar",
     price: "780 000",
     currency: "GNF",
+    discount: 25,
+    isTrending: true,
+    isSpecialOffer: true,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500",
       "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=500",
@@ -612,6 +737,10 @@ export const properties = [
     dates: "13 – 18 fév",
     price: "290 000",
     currency: "GNF",
+    discount: 8,
+    isTrending: false,
+    isSpecialOffer: false,
+    lastSearched: "2024-01-21",
     images: [
       "https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=500",
       "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=500",
@@ -631,6 +760,10 @@ export const properties = [
     dates: "24 – 29 fév",
     price: "320 000",
     currency: "GNF",
+    discount: 11,
+    isTrending: true,
+    isSpecialOffer: false,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=500",
       "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=500",
@@ -650,6 +783,10 @@ export const properties = [
     dates: "15 – 22 mar",
     price: "2 900 000",
     currency: "GNF",
+    discount: 32,
+    isTrending: true,
+    isSpecialOffer: true,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=500",
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=500",
@@ -669,6 +806,10 @@ export const properties = [
     dates: "7 – 12 fév",
     price: "260 000",
     currency: "GNF",
+    discount: 9,
+    isTrending: false,
+    isSpecialOffer: false,
+    lastSearched: "2024-01-22",
     images: [
       "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=500",
       "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=500",
@@ -688,6 +829,10 @@ export const properties = [
     dates: "19 – 24 fév",
     price: "440 000",
     currency: "GNF",
+    discount: 13,
+    isTrending: false,
+    isSpecialOffer: false,
+    lastSearched: "2024-01-23",
     images: [
       "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=500",
       "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=500",
@@ -707,6 +852,10 @@ export const properties = [
     dates: "2 – 7 mar",
     price: "650 000",
     currency: "GNF",
+    discount: 22,
+    isTrending: true,
+    isSpecialOffer: true,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=500",
       "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=500",
@@ -726,6 +875,10 @@ export const properties = [
     dates: "20 – 27 mar",
     price: "1 400 000",
     currency: "GNF",
+    discount: 28,
+    isTrending: true,
+    isSpecialOffer: true,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=500",
       "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500",
@@ -745,6 +898,10 @@ export const properties = [
     dates: "9 – 14 mar",
     price: "540 000",
     currency: "GNF",
+    discount: 16,
+    isTrending: true,
+    isSpecialOffer: false,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1548611635-b6e7847d390d?w=500",
       "https://images.unsplash.com/photo-1505873242700-f289a29e1e0f?w=500",
@@ -764,6 +921,10 @@ export const properties = [
     dates: "13 – 20 mar",
     price: "2 400 000",
     currency: "GNF",
+    discount: 35,
+    isTrending: true,
+    isSpecialOffer: true,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1575517111836-8e82de8e6abd?w=500",
       "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500",
@@ -783,6 +944,10 @@ export const properties = [
     dates: "1 – 6 fév",
     price: "140 000",
     currency: "GNF",
+    discount: 7,
+    isTrending: false,
+    isSpecialOffer: false,
+    lastSearched: "2024-01-24",
     images: [
       "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=500",
       "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=500",
@@ -802,6 +967,10 @@ export const properties = [
     dates: "17 – 22 fév",
     price: "720 000",
     currency: "GNF",
+    discount: 24,
+    isTrending: true,
+    isSpecialOffer: true,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500",
       "https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=500",
@@ -821,6 +990,10 @@ export const properties = [
     dates: "4 – 9 mar",
     price: "380 000",
     currency: "GNF",
+    discount: 11,
+    isTrending: false,
+    isSpecialOffer: false,
+    lastSearched: "2024-01-25",
     images: [
       "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?w=500",
       "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=500",
@@ -840,6 +1013,10 @@ export const properties = [
     dates: "21 – 28 mar",
     price: "3 200 000",
     currency: "GNF",
+    discount: 38,
+    isTrending: true,
+    isSpecialOffer: true,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500",
       "https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=500",
@@ -859,6 +1036,10 @@ export const properties = [
     dates: "26 fév – 3 mar",
     price: "310 000",
     currency: "GNF",
+    discount: 9,
+    isTrending: false,
+    isSpecialOffer: false,
+    lastSearched: "2024-01-26",
     images: [
       "https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=500",
       "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=500",
@@ -878,6 +1059,10 @@ export const properties = [
     dates: "11 – 16 fév",
     price: "580 000",
     currency: "GNF",
+    discount: 19,
+    isTrending: true,
+    isSpecialOffer: false,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500",
       "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=500",
@@ -897,6 +1082,10 @@ export const properties = [
     dates: "16 – 23 mar",
     price: "1 900 000",
     currency: "GNF",
+    discount: 30,
+    isTrending: true,
+    isSpecialOffer: true,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=500",
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=500",
@@ -916,6 +1105,10 @@ export const properties = [
     dates: "3 – 8 fév",
     price: "290 000",
     currency: "GNF",
+    discount: 12,
+    isTrending: true,
+    isSpecialOffer: false,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=500",
       "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=500",
@@ -935,6 +1128,10 @@ export const properties = [
     dates: "10 – 17 mar",
     price: "2 600 000",
     currency: "GNF",
+    discount: 33,
+    isTrending: true,
+    isSpecialOffer: true,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1575517111836-8e82de8e6abd?w=500",
       "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500",
@@ -954,6 +1151,10 @@ export const properties = [
     dates: "25 mar – 1 avr",
     price: "4 500 000",
     currency: "GNF",
+    discount: 40,
+    isTrending: true,
+    isSpecialOffer: true,
+    lastSearched: null,
     images: [
       "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500",
       "https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=500",
@@ -964,7 +1165,23 @@ export const properties = [
   },
 ];
 
+// Compare The Highest Reviewed Past Offers
+const topReviewedProperties = properties
+  .slice()
+  .sort((a, b) => b.rating - a.rating)
+  .slice(0, 8)
+  .map((item) => {
+    const ramdomImages =
+      item.images && item.images.length > 0
+        ? item.images[Math.floor(Math.random() * item.images.length)]
+        : [];
+    return {
+      title: item.title,
+      image: ramdomImages,
+    };
+  });
 
+console.log("Top Reviewed Properties:", topReviewedProperties);
 
 export const ImagesSlider = () => {
   return (
@@ -974,19 +1191,59 @@ export const ImagesSlider = () => {
         className="min-h-screen py-5 px-5"
       >
         {" "}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+        <motion.div
+          className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.1,
+                delayChildren: 0.2,
+              },
+            },
+          }}
+        >
           {properties.map((property, idx) => (
-            <div
+            <motion.div
               key={idx}
-              className="rounded-lg shadow-md overflow-hidden" // Supprimer h-64 ici
+              className="rounded-lg shadow-md overflow-hidden group cursor-pointer"
+              variants={{
+                hidden: {
+                  opacity: 0,
+                  y: 30,
+                  scale: 0.9,
+                },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  transition: {
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 15,
+                  },
+                },
+              }}
+              whileHover={{
+                y: -8,
+                scale: 1.02,
+                transition: {
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 25,
+                },
+              }}
+              whileTap={{ scale: 0.98 }}
             >
-              {/* Slider Swiper - SEULEMENT les images */}
-              <div className="relative h-64">
-                {" "}
-                {/* h-64 déplacé ici */}
+              {/* Slider Swiper avec animations */}
+              <div className="relative h-64 overflow-hidden">
                 <Swiper
                   pagination={{
                     clickable: true,
+                    dynamicBullets: true,
                   }}
                   navigation={{
                     nextEl: ".swiper-button-next",
@@ -997,79 +1254,275 @@ export const ImagesSlider = () => {
                 >
                   {property.images.map((image, index) => (
                     <SwiperSlide key={index}>
-                      <div className="relative w-full h-full">
-                        {/* Image */}
-                        <img
+                      <motion.div
+                        className="relative w-full h-full"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.4 }}
+                      >
+                        {/* Image avec effet de chargement */}
+                        <motion.img
                           src={image}
                           alt={property.title}
                           className="w-full h-full object-cover"
+                          initial={{ opacity: 0, scale: 1.1 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.6, delay: index * 0.1 }}
+                          loading="lazy"
                         />
 
-                        {/* Overlay au survol */}
-                        <div
-                          className="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 
-                   transition-opacity duration-300 flex items-center justify-center"
+                        {/* Overlay animé au survol */}
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent 
+                           flex items-end justify-start p-4"
+                          initial={{ opacity: 0 }}
+                          whileHover={{ opacity: 1 }}
+                          transition={{ duration: 0.3 }}
                         >
-                          <span className="text-white text-lg font-semibold">
+                          <motion.span
+                            className="text-white text-lg font-semibold"
+                            initial={{ y: 20, opacity: 0 }}
+                            whileHover={{ y: 0, opacity: 1 }}
+                            transition={{ delay: 0.1 }}
+                          >
                             {property.title}
-                          </span>
-                        </div>
-                      </div>
+                          </motion.span>
+                        </motion.div>
+
+                        {/* Indicateur d'images multiples */}
+                        {property.images.length > 1 && (
+                          <motion.div
+                            className="absolute top-3 left-3 px-2 py-1 bg-black/70 text-white text-xs rounded-full"
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ delay: 0.5 }}
+                          >
+                            {property.images.length} pictures
+                          </motion.div>
+                        )}
+                      </motion.div>
                     </SwiperSlide>
                   ))}
 
-                  {/* Éléments de navigation EXPLICITES */}
-                  <div className="swiper-button-next">
+                  {/* Navigation custom avec animations */}
+                  <motion.div
+                    className="swiper-button-next"
+                    whileHover={{
+                      scale: 1.1,
+                      backgroundColor: "rgba(0,0,0,0.8)",
+                    }}
+                    whileTap={{ scale: 0.9 }}
+                  >
                     <ChevronRight />
-                  </div>
-                  <div className="swiper-button-prev">
+                  </motion.div>
+                  <motion.div
+                    className="swiper-button-prev"
+                    whileHover={{
+                      scale: 1.1,
+                      backgroundColor: "rgba(0,0,0,0.8)",
+                    }}
+                    whileTap={{ scale: 0.9 }}
+                  >
                     <ChevronLeft />
-                  </div>
+                  </motion.div>
                 </Swiper>
-                {/* Bouton favori - EN DEHORS du Swiper mais dans le conteneur image */}
-                <button className="absolute top-3 right-3 p-2 bg-white rounded-full hover:scale-110 transition-transform shadow z-10">
-                  <Heart color={colors.neutral.textPrimary} />
-                </button>
+
+                {/* Bouton favori avec animation cœur */}
+                <motion.button
+                  className="absolute top-3 right-3 p-2 bg-white rounded-full shadow-lg z-10"
+                  whileHover={{
+                    scale: 1.15,
+                    backgroundColor: "#fef2f2",
+                  }}
+                  whileTap={{ scale: 0.9 }}
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 200,
+                    delay: 0.3 + idx * 0.05,
+                  }}
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.2 }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                  >
+                    <Heart
+                      color={colors.neutral.textPrimary}
+                      fill={colors.neutral.textPrimary}
+                    />
+                  </motion.div>
+                </motion.button>
+
+                {/* Badge de statut (Nouveau, Populaire, etc.) */}
+                {property.isNew && (
+                  <motion.div
+                    className="absolute top-3 left-3 px-2 py-1 bg-green-500 text-white text-xs font-bold rounded-md z-10"
+                    initial={{ x: -50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.4 + idx * 0.05 }}
+                  >
+                    NOUVEAU
+                  </motion.div>
+                )}
               </div>
 
-              {/* Contenu de la carte - EN DEHORS du slider */}
-              <div className="p-4 bg-white">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="font-semibold text-gray-900">
+              {/* Contenu de la carte avec animations en cascade */}
+              <motion.div
+                className="p-4 bg-white"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 + idx * 0.05 }}
+              >
+                {/* En-tête avec titre et rating */}
+                <motion.div
+                  className="flex justify-between items-start mb-2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.7 + idx * 0.05 }}
+                >
+                  <motion.h3
+                    className="font-semibold text-gray-900 line-clamp-1"
+                    whileHover={{ color: "#3b82f6" }}
+                  >
                     {property.title}
-                  </h3>
-                  <div className="flex items-center gap-1">
-                    <span className="text-black">★</span>
+                  </motion.h3>
+                  <motion.div
+                    className="flex items-center gap-1"
+                    whileHover={{ scale: 1.1 }}
+                  >
+                    <motion.span
+                      className="text-yellow-400"
+                      animate={{ rotate: [0, 10, -10, 0] }}
+                      transition={{ duration: 0.5, delay: 1 + idx * 0.1 }}
+                    >
+                      ★
+                    </motion.span>
                     <span className="text-sm text-gray-900">
                       {property.rating}
                     </span>
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
 
-                <div className="flex items-center justify-between">
-                  <p className="text-gray-500 text-sm mb-1">
-                    {property.location}
-                  </p>
-                  <p className="text-gray-500 text-sm mb-1">{property.dates}</p>
-                </div>
-                <p className="text-gray-500 text-sm mb-3">
+                {/* Localisation et dates */}
+                <motion.div
+                  className="flex items-center justify-between mb-2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.8 + idx * 0.05 }}
+                >
+                  <motion.p
+                    className="text-gray-500 text-sm flex items-center gap-1"
+                    whileHover={{ x: 5 }}
+                  >
+                    📍 {property.location}
+                  </motion.p>
+                  <motion.p
+                    className="text-gray-500 text-sm"
+                    whileHover={{ x: -5 }}
+                  >
+                    📅 {property.dates}
+                  </motion.p>
+                </motion.div>
+
+                {/* Description */}
+                <motion.p
+                  className="text-gray-500 text-sm mb-3 line-clamp-2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.9 + idx * 0.05 }}
+                >
                   {property.description}
-                </p>
+                </motion.p>
 
-                <div className="flex justify-between items-center">
+                {/* Prix et durée */}
+                <motion.div
+                  className="flex justify-between items-center"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.0 + idx * 0.05 }}
+                >
                   <div className="text-gray-900 font-semibold w-full flex items-center justify-between">
-                    <div className="text-black font-bold flex  items-center gap-2">
-                      <span>{property.price}</span>
+                    <motion.div
+                      className="text-black font-bold flex items-center gap-2"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      <motion.span
+                        initial={{ scale: 0.8 }}
+                        animate={{ scale: 1 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 200,
+                          delay: 1.1 + idx * 0.05,
+                        }}
+                      >
+                        {property.price}
+                      </motion.span>
                       <span>{property.currency}</span>
-                    </div>
-                    <span className="text-gray-600 font-normal">
-                      {" "}
+                    </motion.div>
+                    <motion.span
+                      className="text-gray-600 font-normal"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 1.2 + idx * 0.05 }}
+                    >
                       for 5 nights
-                    </span>
+                    </motion.span>
                   </div>
-                </div>
-              </div>
-            </div>
+                </motion.div>
+
+                {/* Bouton de réservation discret */}
+                <motion.button
+                  className="w-full mt-3 py-2 bg-blue-500 text-white rounded-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity"
+                  whileHover={{
+                    scale: 1.02,
+                    backgroundColor: colors.primary.buttonHover,
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Réserver maintenant
+                </motion.button>
+              </motion.div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+      {/* Compare The Highest Reviewed Past Offers  */}
+      <div>
+        <h2 className="text-2xl font-bold mb-4 px-5">
+          Compare The Highest Reviewed Past Offers{" "}
+        </h2>
+        <div className="grid grid-cols-2  lg:grid-cols-4 gap-4 px-5 mb-10">
+          {topReviewedProperties.map((property, index) => (
+            <motion.div
+              key={index}
+              className="rounded-lg overflow-hidden shadow-lg cursor-pointer"
+              initial={{ opacity: 0, y: 30 }} // état initial
+              animate={{ opacity: 1, y: 0 }} // état final
+              transition={{ duration: 0.5, delay: index * 0.1 }} // délai progressif
+              whileHover={{ scale: 1.05 }} // effet hover
+            >
+              <motion.img
+                src={property.image}
+                alt={property.title}
+                className="w-full h-40 object-cover"
+                initial={{ scale: 1.1 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.6 }}
+              />
+              <motion.div
+                className="p-2 bg-white"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <motion.h3
+                  className="text-sm font-semibold text-gray-900 line-clamp-2"
+                  whileHover={{ color: "#4f46e5" }} // change couleur au hover
+                >
+                  {property.title}
+                </motion.h3>
+              </motion.div>
+            </motion.div>
           ))}
         </div>
       </div>
