@@ -4,6 +4,8 @@ import { ChevronRight } from "lucide-react";
 import colors from "../colorsPalette";
 import { properties } from "../../pages/ImagesSlider";
 import OffersTestimonials from "../FavoriteHotel";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 // filtrage hotels by type
 
@@ -65,6 +67,12 @@ const highestReview = properties
 console.log("discount hotel highestReview", highestReview);
 
 export const Hotels = () => {
+  const [dismiss, setDismiss] = useState(false);
+
+  const handleDismiss = () => {
+    setDismiss((prev) => !prev);
+  };
+
   // hotels filtered by type
   const [isActive, setIsActive] = React.useState("Special offers");
   const hotelTypes = [
@@ -88,18 +96,25 @@ export const Hotels = () => {
         </div>
 
         {/* date peaker */}
-        <div>
-          <DaterPeaker showText={true} />
+        <div className="transition-all duration-500 ease-in-out">
+          <DaterPeaker
+            handleDismiss={handleDismiss}
+            isDismiss={dismiss}
+            showText={true}
+          />
         </div>
         <div>
           <div className="">
             <div
-              style={{ backgroundImage: "url('/next dream bg.png')" }}
-              className=" relative  bg-cover h-80  md:h-[500px]  bg-no-repeat bg-center w-full  "
+              style={{
+                backgroundImage:
+                  "url('https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80')",
+              }}
+              className=" relative  bg-cover h-80  md:h-[500px]  bg-no-repeat bg-center w-full   "
             >
               <div className=" absolute inset-0 bg-black/40"></div>
-              <div className=" absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center justify-center  top-10  z-10 ">
-                <h1 className="  text-4xl font-bold  text-black ">
+              <div className=" absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center justify-center gap-5 top-24  z-10 ">
+                <h1 className=" text-2xl  md:text-4xl font-bold  md:text-black flex flex-nowrap text-white">
                   Why Choose Us?{" "}
                 </h1>
                 <button className="flex items-center gap-2 w-fit   bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 ms-3 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
@@ -113,11 +128,11 @@ export const Hotels = () => {
             </div>
 
             <div
-              className="relative mx-10 bg-center bg-no-repeat bg-cover h-80 md:h-[500px] shadow-lg overflow-hidden"
+              className="relative mx-10 mt bg-center bg-no-repeat bg-cover h-80 md:h-[500px] shadow-lg overflow-hidden"
               style={{ backgroundImage: "url('/htel bg.png')" }}
             >
               {/* input for checking and checkout using datapeaker */}
-              <div className=" flex items-center justify-center ">
+              <div className="flex items-center justify-center ">
                 <div className="grid grid-cols-3 md:grid-cols-5  gap-4 shadow-lg">
                   {hotelTypes.map((type) => (
                     <button
@@ -302,12 +317,14 @@ export const Hotels = () => {
 
         {/* Bouton d'action supplémentaire */}
         <div className="text-center mt-8">
-          <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
+          <Link
+            to="/hotel-filter"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg"
+          >
             Discover More
-          </button>
+          </Link>
         </div>
       </div>
-
 
       <OffersTestimonials />
     </div>

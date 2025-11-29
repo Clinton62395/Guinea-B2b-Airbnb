@@ -91,10 +91,17 @@ import { ChevronRight } from "lucide-react";
 import { Hotels } from "../components/hotelsTypes/Hotels";
 import { MixedHotels } from "../components/hotelsTypes/Mixed";
 import { FamilialHotels } from "../components/hotelsTypes/FamilialHotels";
+import { useNavigate } from "react-router-dom";
 
-export const HomePage = () => {
+const HomePage = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [hotelType, setHotelType] = useState("");
+  const [dismiss, setDismiss] = useState(false);
+
+  // use navigate
+  const navigate = useNavigate();
+
+  const handleDismiss = () => setDismiss((prev) => !prev);
 
   const categories = ["All", "Hotels", "Familial"];
 
@@ -162,8 +169,13 @@ export const HomePage = () => {
               </h1>
 
               {/* input for checking and checkout using datapeaker */}
-              <div className=" absolute bottom-[-40px]  z-10  w-full px-4 md:px-20 ">
-                <DaterPeaker />
+              <div
+                className={`absolute bottom-[-40px]   z-10  w-full px-4 md:px-20 `}
+              >
+                <DaterPeaker
+                  isDismiss={dismiss}
+                  handleDismiss={handleDismiss}
+                />
               </div>
             </div>
             {/* Special Offers Section */}
@@ -302,6 +314,7 @@ export const HomePage = () => {
                 style={{
                   color: colors.neutral.bgCard,
                 }}
+                onClick={() => navigate("/hotel-filter")}
               >
                 Read More <ChevronRight />
               </button>
@@ -311,7 +324,7 @@ export const HomePage = () => {
           </div>
         )}
       </div>
-
     </>
   );
 };
+export default HomePage;

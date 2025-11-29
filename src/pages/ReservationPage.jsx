@@ -8,6 +8,9 @@ import {
   ChevronRight,
   X,
 } from "lucide-react";
+import { DaterPeaker } from "../components/DaterPeaker";
+import { Link } from "react-router-dom";
+import colors from "../components/colorsPalette";
 
 const HotelCard = ({
   image,
@@ -178,7 +181,11 @@ const FilterSection = ({ title, children, defaultOpen = true }) => {
   );
 };
 
-const HotelSearchPage = () => {
+const HotelSearchPage = ({ onClose }) => {
+  const [showDaterPeaker, setShowDaterPeaker] = useState(false);
+  const [isBooked, setIsBooked] = useState(false);
+
+  const handleDismiss = () => setShowDaterPeaker((prev) => !prev);
   const hotels = [
     {
       image:
@@ -269,9 +276,27 @@ const HotelSearchPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Data peaker component */}
+
+      <section className="text-blue-500 shadow-sm p-6 mb-6">
+        <div className="mb-4 md:mb-10  text-start">
+          <h2 className=" text-4xl text-primary font-bold mb-2">
+            Where is your Next Dream Place?
+          </h2>
+          <p className="text-sm text-gray-600">
+            Find exclusive Genius rewards in every corner of the world!
+          </p>
+        </div>
+        <DaterPeaker
+          showText={true}
+          isDismiss={showDaterPeaker}
+          handleDismiss={handleDismiss}
+        />
+      </section>
+
       <div className="flex">
         {/* Sidebar Filters */}
-        <div className="w-80 bg-white p-6 border-r border-gray-200 h-screen overflow-y-auto">
+        <div className="w-80 bg-white p-6 border-r border-gray-200 min-h-screen h- full overflow-y-auto">
           {/* Map Placeholder */}
           <div className="mb-6">
             <img
@@ -385,11 +410,11 @@ const HotelSearchPage = () => {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex gap-4 mt-8">
-            <button className="flex-1 border-2 border-gray-300 text-gray-700 font-semibold py-3 px-6 rounded hover:bg-gray-50 transition-colors">
+          <div className="flex  items-center justify-between gap-4 mt-8">
+            <Link className="border-blue-600  border-2 hover:bg-slate-100  text-gray-700 font-semibold py-3 px-6 rounded  transition-colors">
               Just Your Favourite Places
-            </button>
-            <button className="flex-1 bg-blue-600 text-white font-semibold py-3 px-6 rounded hover:bg-blue-700 transition-colors">
+            </Link>
+            <button className=" bg-blue-600 text-white font-semibold py-3 px-6 rounded hover:bg-blue-700 transition-colors">
               See More Search Results
             </button>
           </div>
@@ -405,89 +430,89 @@ export default HotelSearchPage;
 
 // hotel not available component
 
-export const HotelFullyBookedModal = () => {
-  const [isOpen, setIsOpen] = useState(true);
-  const [email, setEmail] = useState("");
+// export const HotelFullyBookedModal = () => {
+//   const [isOpen, setIsOpen] = useState(true);
+//   const [email, setEmail] = useState("");
 
-  if (!isOpen) {
-    return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
-        <button
-          onClick={() => setIsOpen(true)}
-          className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700"
-        >
-          Show Modal
-        </button>
-      </div>
-    );
-  }
+//   if (!isOpen) {
+//     return (
+//       <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+//         <button
+//           onClick={() => setIsOpen(true)}
+//           className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700"
+//         >
+//           Show Modal
+//         </button>
+//       </div>
+//     );
+//   }
 
-  return (
-    <div className="min-h-screen bg-gray-900 bg-opacity-75 flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg shadow-2xl max-w-md w-full relative">
-        {/* Close Button */}
-        <button
-          onClick={() => setIsOpen(false)}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
-        >
-          <X className="w-6 h-6" />
-        </button>
+//   return (
+//     <div className="min-h-screen bg-gray-900 bg-opacity-75 flex items-center justify-center p-4">
+//       <div className="bg-white rounded-lg shadow-2xl max-w-md w-full relative">
+//         {/* Close Button */}
+//         <button
+//           onClick={() => setIsOpen(false)}
+//           className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+//         >
+//           <X className="w-6 h-6" />
+//         </button>
 
-        {/* Modal Content */}
-        <div className="p-8 text-center">
-          {/* Title */}
-          <h2 className="text-2xl font-bold mb-2">
-            <span className="text-red-600">
-              Our Hotel Is Currently Fully Booked !
-            </span>
-          </h2>
+//         {/* Modal Content */}
+//         <div className="p-8 text-center">
+//           {/* Title */}
+//           <h2 className="text-2xl font-bold mb-2">
+//             <span className="text-red-600">
+//               Our Hotel Is Currently Fully Booked !
+//             </span>
+//           </h2>
 
-          {/* Subtitle */}
-          <p className="text-gray-800 font-semibold mb-3">
-            We Apologise For The Inconvenience .
-          </p>
+//           {/* Subtitle */}
+//           <p className="text-gray-800 font-semibold mb-3">
+//             We Apologise For The Inconvenience .
+//           </p>
 
-          {/* Message */}
-          <p className="text-gray-700 mb-6">
-            Thank You For Your Understanding!
-          </p>
+//           {/* Message */}
+//           <p className="text-gray-700 mb-6">
+//             Thank You For Your Understanding!
+//           </p>
 
-          {/* Description */}
-          <p className="text-sm text-gray-600 mb-6 leading-relaxed">
-            Check the back With us when you want to our Available Rooms And
-            Kindly
-            <br />
-            Subscribe To Our Newsletter To Get All Updated
-          </p>
+//           {/* Description */}
+//           <p className="text-sm text-gray-600 mb-6 leading-relaxed">
+//             Check the back With us when you want to our Available Rooms And
+//             Kindly
+//             <br />
+//             Subscribe To Our Newsletter To Get All Updated
+//           </p>
 
-          {/* Newsletter Section */}
-          <div className="mb-6">
-            <label className="block text-sm font-semibold text-gray-700 mb-3 text-left">
-              Subscribe for Receiving Room Availability Notification
-            </label>
+//           {/* Newsletter Section */}
+//           <div className="mb-6">
+//             <label className="block text-sm font-semibold text-gray-700 mb-3 text-left">
+//               Subscribe for Receiving Room Availability Notification
+//             </label>
 
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              className="w-full border border-gray-300 rounded px-4 py-3 mb-4 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
+//             <input
+//               type="email"
+//               value={email}
+//               onChange={(e) => setEmail(e.target.value)}
+//               placeholder="Enter your email"
+//               className="w-full border border-gray-300 rounded px-4 py-3 mb-4 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+//             />
 
-            <button
-              className="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded hover:bg-blue-700 transition-colors"
-              onClick={() => {
-                if (email) {
-                  alert(`Subscribed with: ${email}`);
-                  setEmail("");
-                }
-              }}
-            >
-              Room Availability Notification
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+//             <button
+//               className="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded hover:bg-blue-700 transition-colors"
+//               onClick={() => {
+//                 if (email) {
+//                   alert(`Subscribed with: ${email}`);
+//                   setEmail("");
+//                 }
+//               }}
+//             >
+//               Room Availability Notification
+//             </button>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };

@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import colors from "./colorsPalette";
-import { CalendarDays, UserPlus, MapPin, Search, Castle } from "lucide-react";
+import {
+  CalendarDays,
+  UserPlus,
+  MapPin,
+  Search,
+  Castle,
+  ChevronUp,
+  ChevronDown,
+} from "lucide-react";
 import DatePicker from "react-datepicker";
 import Box from "@mui/material/Box";
 import UnfoldLessDoubleIcon from "@mui/icons-material/UnfoldLessDouble";
@@ -27,15 +35,14 @@ const hotelOptions = allLocations.map((loc) => ({
 
 export const DaterPeaker = ({
   labelText,
+  handleDismiss,
+  isDismiss,
   showText = false,
-  HotelComponent,
 }) => {
   const [startDate, setStartDate] = useState(dayjs());
   const [endDate, setEndDate] = useState(dayjs().add(1, "day"));
   const [adults, setAdults] = useState("2");
   const [children, setChildren] = useState("3");
-
-  // const showText = show === HotelComponent;
 
   const CustomerDateText = forwardRef(
     ({ value, onClick, placeholder }, ref) => {
@@ -79,13 +86,29 @@ export const DaterPeaker = ({
   };
   return (
     <div className="w-full max-w-8xl mx-auto p-y-3 px-4 md:px-6 lg:px-8">
-      {/* Container principal avec style plus compact */}
+      {/* Bouton dismiss/open pour mobile */}
+
+      <div className="flex justify-end">
+        <button
+          onClick={handleDismiss}
+          className="md:hidden relative bg-slate-700 flex items-center justify-center  mb-2 text-white  h-8 w-8 rounded-full transition-transform duration-300 ease-in-out hover:bg-black focus:right-1 hover:text-white"
+          aria-label={
+            isDismiss ? "Afficher le formulaire" : "Masquer le formulaire"
+          }
+        >
+          {isDismiss ? <ChevronDown size={24} /> : <ChevronUp size={24} />}
+        </button>
+      </div>
+
+      {/* Container principal - caché sur mobile seulement si dismissed */}
       <div
         style={{
           borderColor: colors.neutral.borderLight,
           backgroundColor: colors.neutral.bgCard,
         }}
-        className="flex items-center flex-col lg:flex-row  bg-white rounded-xl shadow-lg border  hover:shadow-xl transition-all duration-300"
+        className={`${
+          isDismiss ? "hidden md:flex" : "flex"
+        } items-center flex-col lg:flex-row bg-white rounded-xl shadow-lg border hover:shadow-xl transition-all duration-300`}
       >
         {/* Destination - Première colonne */}
         <div className="flex-1 w-full border-r border-gray-200">
@@ -234,68 +257,60 @@ export const DaterPeaker = ({
                 backgroundColor: colors.neutral.bgCard,
                 color: colors.neutral.textPrimary,
               }}
-              className=" flex-1  gap-3 w-full flex items-center px-4 py-3 text-center outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 appearance-none text-sm"
+              className="grid w-full  grid-cols-2   gap-3  items-center px-4 py-3 text-center outline-none border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 appearance-none text-sm"
             >
-              <div className="">
-                <div className="relative">
-                  <select
-                    style={{
-                      borderColor: colors.neutral.borderLight,
-                      backgroundColor: colors.neutral.bgCard,
-                    }}
-                    value={`${adults} adults ${children} children`}
-                    onChange={(e) => {
-                      const value = e.target.value;
-                      const adultsMatch = value.match(/(\d+) adults/);
-                      const childrenMatch = value.match(/(\d+) children/);
-                      if (adultsMatch) setAdults(adultsMatch[1]);
-                      if (childrenMatch) setChildren(childrenMatch[1]);
-                    }}
-                    className="w-full   ms-6 py-2 px-2 rounded-lg outline-none  appearance-none hover:bg-gray-100 border-0 hover:ring-0 transition-all duration-200"
-                  >
-                    <option value="1 adults 0 children">
-                      1 adult, 0 children
-                    </option>
-                    <option value="2 adults 0 children">
-                      2 adults, 0 children
-                    </option>
-                    <option value="2 adults 1 children">
-                      2 adults, 1 child
-                    </option>
-                    <option value="2 adults 2 children">
-                      2 adults, 2 children
-                    </option>
-                    <option value="2 adults 3 children">
-                      2 adults, 3 children
-                    </option>
-                    <option value="3 adults 0 children">
-                      3 adults, 0 children
-                    </option>
-                    <option value="3 adults 1 children">
-                      3 adults, 1 child
-                    </option>
-                    <option value="3 adults 2 children">
-                      3 adults, 2 children
-                    </option>
-                    <option value="3 adults 3 children">
-                      3 adults, 3 children
-                    </option>
-                    <option value="4 adults 0 children">
-                      4 adults, 0 children
-                    </option>
-                    <option value="4 adults 1 children">
-                      4 adults, 1 child
-                    </option>
-                    <option value="4 adults 2 children">
-                      4 adults, 2 children
-                    </option>
-                    <option value="4 adults 3 children">
-                      4 adults, 3 children
-                    </option>
-                  </select>
-                  <div className="pointer-events-none absolute z-10 inset-y-0 -left-5 flex items-center px-2 text-gray-700">
-                    <UserPlus />
-                  </div>
+              <div className="relative">
+                <select
+                  style={{
+                    borderColor: colors.neutral.borderLight,
+                    backgroundColor: colors.neutral.bgCard,
+                  }}
+                  value={`${adults} adults ${children} children`}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    const adultsMatch = value.match(/(\d+) adults/);
+                    const childrenMatch = value.match(/(\d+) children/);
+                    if (adultsMatch) setAdults(adultsMatch[1]);
+                    if (childrenMatch) setChildren(childrenMatch[1]);
+                  }}
+                  className="w-full   ms-6 py-2 px-2 rounded-lg outline-none  appearance-none hover:bg-gray-100 border-0 hover:ring-0 transition-all duration-200"
+                >
+                  <option value="1 adults 0 children">
+                    1 adult, 0 children
+                  </option>
+                  <option value="2 adults 0 children">
+                    2 adults, 0 children
+                  </option>
+                  <option value="2 adults 1 children">2 adults, 1 child</option>
+                  <option value="2 adults 2 children">
+                    2 adults, 2 children
+                  </option>
+                  <option value="2 adults 3 children">
+                    2 adults, 3 children
+                  </option>
+                  <option value="3 adults 0 children">
+                    3 adults, 0 children
+                  </option>
+                  <option value="3 adults 1 children">3 adults, 1 child</option>
+                  <option value="3 adults 2 children">
+                    3 adults, 2 children
+                  </option>
+                  <option value="3 adults 3 children">
+                    3 adults, 3 children
+                  </option>
+                  <option value="4 adults 0 children">
+                    4 adults, 0 children
+                  </option>
+                  <option value="4 adults 1 children">4 adults, 1 child</option>
+                  <option value="4 adults 2 children">
+                    4 adults, 2 children
+                  </option>
+                  <option value="4 adults 3 children">
+                    4 adults, 3 children
+                  </option>
+                </select>
+                <div className="pointer-events-none absolute z-10 inset-y-0 -left-5 flex items-center px-2 text-gray-700">
+                  <UserPlus />
                 </div>
               </div>
               <div className="ml-3 text-sm text-gray-500 whitespace-nowrap">
@@ -309,7 +324,9 @@ export const DaterPeaker = ({
                       border: "none", // supprime la bordure
                       boxShadow: "none", // supprime l'ombre
                       outline: "none", // supprime l'outline
-                      backgroundColor: "transparent", // pas d'apparence
+                      backgroundColor: "transparent",
+                      width: "100%",
+                      zIndex: "2", // pas d'  apparence
                     }),
                     dropdownIndicator: (base) => ({
                       ...base,

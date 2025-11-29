@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { motion } from "framer-motion";
-
-// Import Swiper styles
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import StarBorderIcon from "@mui/icons-material/StarBorder"; // Import Swiper styles
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation"; // ← CETTE LIGNE EST CRUCIALE
 
 // Import modules dont tu as besoin (ex: Pagination, Navigation, Autoplay)
 import { Pagination, Navigation } from "swiper/modules";
-import { ChevronLeft, ChevronRight, Heart } from "lucide-react";
+import { ChevronLeft, ChevronRight, Heart, Star } from "lucide-react";
 import colors from "../components/colorsPalette";
+import { Link } from "react-router-dom";
 
 export const properties = [
   {
@@ -1184,6 +1186,17 @@ const topReviewedProperties = properties
 console.log("Top Reviewed Properties:", topReviewedProperties);
 
 export const ImagesSlider = () => {
+  const [favorite, setFavorite] = useState([]);
+
+  const handleFavorite = (propertyId) => {
+    setFavorite((prev) =>
+      prev.includes(propertyId)
+        ? prev.filter((id) => id !== propertyId)
+        : [...prev, propertyId]
+    );
+  };
+
+  const isFavorite = (propertyId) => favorite.includes(propertyId);
   return (
     <>
       <div
@@ -1206,9 +1219,9 @@ export const ImagesSlider = () => {
             },
           }}
         >
-          {properties.map((property, idx) => (
+          {properties.map((property) => (
             <motion.div
-              key={idx}
+              key={property.id}
               className="rounded-lg shadow-md overflow-hidden group cursor-pointer"
               variants={{
                 hidden: {
@@ -1260,15 +1273,17 @@ export const ImagesSlider = () => {
                         transition={{ duration: 0.4 }}
                       >
                         {/* Image avec effet de chargement */}
-                        <motion.img
-                          src={image}
-                          alt={property.title}
-                          className="w-full h-full object-cover"
-                          initial={{ opacity: 0, scale: 1.1 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.6, delay: index * 0.1 }}
-                          loading="lazy"
-                        />
+                        <Link to="/hotel-filter">
+                          <motion.img
+                            src={image}
+                            alt={property.title}
+                            className="w-full h-full object-cover"
+                            initial={{ opacity: 0, scale: 1.1 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                            loading="lazy"
+                          />
+                        </Link>
 
                         {/* Overlay animé au survol */}
                         <motion.div
@@ -1328,7 +1343,13 @@ export const ImagesSlider = () => {
 
                 {/* Bouton favori avec animation cœur */}
                 <motion.button
-                  className="absolute top-3 right-3 p-2 bg-white rounded-full shadow-lg z-10"
+                  className="absolute top-3 right-3 p-3 bg-white w-10 h-10 flex items-center justify-center rounded-full shadow-lg z-10"
+                  onClick={(e) => {
+                    // Prevent the Link (image) from receiving the click when user clicks the heart
+                    e.stopPropagation();
+                    e.preventDefault();
+                    handleFavorite(property.id);
+                  }}
                   whileHover={{
                     scale: 1.15,
                     backgroundColor: "#fef2f2",
@@ -1339,16 +1360,24 @@ export const ImagesSlider = () => {
                   transition={{
                     type: "spring",
                     stiffness: 200,
-                    delay: 0.3 + idx * 0.05,
+                    delay: 0.3 + property.id * 0.05,
                   }}
+                  aria-pressed={isFavorite(property.id)}
                 >
                   <motion.div
+                    aria-label="Favorite"
                     whileHover={{ scale: 1.2 }}
                     transition={{ type: "spring", stiffness: 400 }}
                   >
                     <Heart
-                      color={colors.neutral.textPrimary}
-                      fill={colors.neutral.textPrimary}
+                      size={18}
+                      color={isFavorite(property.id) ? "tomato" : undefined}
+                      fill={isFavorite(property.id) ? "tomato" : "none"}
+                      className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                        isFavorite(property.id)
+                          ? "text-red-500"
+                          : "text-gray-400"
+                      }`}
                     />
                   </motion.div>
                 </motion.button>
@@ -1371,14 +1400,14 @@ export const ImagesSlider = () => {
                 className="p-4 bg-white"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 + idx * 0.05 }}
+                transition={{ delay: 0.6 + property.id * 0.05 }}
               >
                 {/* En-tête avec titre et rating */}
                 <motion.div
                   className="flex justify-between items-start mb-2"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.7 + idx * 0.05 }}
+                  transition={{ delay: 0.7 + property.id * 0.05 }}
                 >
                   <motion.h3
                     className="font-semibold text-gray-900 line-clamp-1"
@@ -1393,9 +1422,12 @@ export const ImagesSlider = () => {
                     <motion.span
                       className="text-yellow-400"
                       animate={{ rotate: [0, 10, -10, 0] }}
-                      transition={{ duration: 0.5, delay: 1 + idx * 0.1 }}
+                      transition={{
+                        duration: 0.5,
+                        delay: 1 + property.id * 0.1,
+                      }}
                     >
-                      ★
+                      <StarBorderIcon />
                     </motion.span>
                     <span className="text-sm text-gray-900">
                       {property.rating}
@@ -1408,19 +1440,19 @@ export const ImagesSlider = () => {
                   className="flex items-center justify-between mb-2"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.8 + idx * 0.05 }}
+                  transition={{ delay: 0.8 + property.id * 0.05 }}
                 >
                   <motion.p
-                    className="text-gray-500 text-sm flex items-center gap-1"
+                    className="flex items-center gap-2 text-gray-500 text-sm "
                     whileHover={{ x: 5 }}
                   >
-                    📍 {property.location}
+                    <LocationOnIcon /> {property.location}
                   </motion.p>
                   <motion.p
                     className="text-gray-500 text-sm"
                     whileHover={{ x: -5 }}
                   >
-                    📅 {property.dates}
+                    <CalendarMonthIcon /> {property.dates}
                   </motion.p>
                 </motion.div>
 
@@ -1429,7 +1461,7 @@ export const ImagesSlider = () => {
                   className="text-gray-500 text-sm mb-3 line-clamp-2"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.9 + idx * 0.05 }}
+                  transition={{ delay: 0.9 + property.id * 0.05 }}
                 >
                   {property.description}
                 </motion.p>
@@ -1439,7 +1471,7 @@ export const ImagesSlider = () => {
                   className="flex justify-between items-center"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.0 + idx * 0.05 }}
+                  transition={{ delay: 1.0 + property.id * 0.05 }}
                 >
                   <div className="text-gray-900 font-semibold w-full flex items-center justify-between">
                     <motion.div
@@ -1452,7 +1484,7 @@ export const ImagesSlider = () => {
                         transition={{
                           type: "spring",
                           stiffness: 200,
-                          delay: 1.1 + idx * 0.05,
+                          delay: 1.1 + property.id * 0.05,
                         }}
                       >
                         {property.price}
@@ -1463,7 +1495,7 @@ export const ImagesSlider = () => {
                       className="text-gray-600 font-normal"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      transition={{ delay: 1.2 + idx * 0.05 }}
+                      transition={{ delay: 1.2 + property.id * 0.05 }}
                     >
                       for 5 nights
                     </motion.span>
