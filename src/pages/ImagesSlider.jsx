@@ -12,7 +12,7 @@ import "swiper/css/navigation"; // ← CETTE LIGNE EST CRUCIALE
 import { Pagination, Navigation } from "swiper/modules";
 import { ChevronLeft, ChevronRight, Heart, Star } from "lucide-react";
 import colors from "../components/colorsPalette";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const properties = [
   {
@@ -1196,6 +1196,8 @@ export const ImagesSlider = () => {
     );
   };
 
+  const navigate = useNavigate();
+
   const isFavorite = (propertyId) => favorite.includes(propertyId);
   return (
     <>
@@ -1504,6 +1506,7 @@ export const ImagesSlider = () => {
 
                 {/* Bouton de réservation discret */}
                 <motion.button
+                  onClick={() => navigate("/hotel-booking")}
                   className="w-full mt-3 py-2 bg-blue-500 text-white rounded-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity"
                   whileHover={{
                     scale: 1.02,
