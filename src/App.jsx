@@ -14,11 +14,13 @@ import { HomeLayout } from "./layouts/HomeLayout";
 import NotFound from "./pages/NotFound";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import HotelDetailsPage from "./pages/HotelDetailsPage";
-import HotelBookingForm from "./pages/HotelBookinForm";
+import HotelDetailsPage from "./components/Hotel_components/HotelDetailsPage";
+import HotelBookingForm from "./components/Hotel_components/HotelBookinForm";
 import BookingConfirmation from "./pages/BookingConfirmed";
 
-const HotelSearchPage = lazy(() => import("./pages/ReservationPage"));
+const HotelSearchPage = lazy(() =>
+  import("./components/Hotel_components/ReservationPage")
+);
 const HomePage = lazy(() => import("./pages/HomePage"));
 
 function App() {
@@ -27,14 +29,23 @@ function App() {
       <BrowserRouter>
         <PrimeReactProvider>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <Suspense fallback={<div><HomeSkeleton /></div>}>
+            <Suspense
+              fallback={
+                <div>
+                  <HomeSkeleton />
+                </div>
+              }
+            >
               <Routes>
                 <Route element={<HomeLayout />}>
                   <Route index element={<HomePage />} />
                   <Route path="/hotel-filter" element={<HotelSearchPage />} />
                   <Route path="/hotel-details" element={<HotelDetailsPage />} />
                   <Route path="/hotel-booking" element={<HotelBookingForm />} />
-                  <Route path="/booking-confirmation" element={<BookingConfirmation />} />
+                  <Route
+                    path="/booking-confirmation"
+                    element={<BookingConfirmation />}
+                  />
                   {/* <Route path="/register" element={<RegisterPage />} /> */}
                   {/* <Route path="/login" element={<LoginPage />} /> */}
                 </Route>

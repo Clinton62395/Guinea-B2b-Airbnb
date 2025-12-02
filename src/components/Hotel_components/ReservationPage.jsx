@@ -8,9 +8,9 @@ import {
   ChevronRight,
   X,
 } from "lucide-react";
-import { DaterPeaker } from "../components/DaterPeaker";
+import { DaterPeaker } from "../DaterPeaker";
 import { Link } from "react-router-dom";
-import colors from "../components/colorsPalette";
+import colors from "../colorsPalette";
 
 const HotelCard = ({
   image,
@@ -427,5 +427,3 @@ const HotelSearchPage = ({ onClose }) => {
 export default HotelSearchPage;
 
 // ************************************************************************************
-
-

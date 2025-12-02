@@ -1506,7 +1506,7 @@ export const ImagesSlider = () => {
 
                 {/* Bouton de réservation discret */}
                 <motion.button
-                  onClick={() => navigate("/hotel-booking")}
+                  onClick={() => navigate("/hotel-details")}
                   className="w-full mt-3 py-2 bg-blue-500 text-white rounded-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity"
                   whileHover={{
                     scale: 1.02,
