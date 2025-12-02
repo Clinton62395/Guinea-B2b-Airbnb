@@ -379,21 +379,19 @@ const HotelBookingForm = () => {
 
           <div className="w-full bg-white shadow-sm border border-gray-200 my-3 rounded-md p-6">
             {/* Room Title */}
-            <div className="">
+            <div className=" px-5 py-8">
               <div className="mb-6">
                 <h2 className="text-xl">
                   <span className="font-bold">The Room :</span>{" "}
                   <span className="font-normal">Superior Twin Room</span>
                 </h2>
               </div>
-
               {/* Guest Number */}
               <div className="flex items-center gap-3 mb-4">
                 <Users className="w-5 h-5 text-gray-700" />
                 <span className="font-bold text-gray-900">Guest Number</span>
                 <span className="text-gray-700">2 Adult</span>
               </div>
-
               {/* Cleanliness Rating */}
               <div className="flex items-center gap-3 mb-6">
                 <Award className="w-5 h-5 text-gray-700" />
@@ -402,52 +400,54 @@ const HotelBookingForm = () => {
                   <span className="text-blue-600 font-bold text-sm">8.8</span>
                 </div>
               </div>
-
               {/* Amenities Grid */}
-              <div className="grid grid-cols-3 gap-4 place-items-center  items-center">
+              <div className="grid grid-cols-3 gap-3">
+                {" "}
+                {/* Supprime place-items-center */}
                 {/* Size */}
-                <div className=" w-full col-span-1">
-                  <button className="flex items-center  gap-2 border-2 border-green-600 bg-green-50 rounded-lg px-4 py-3 hover:bg-green-100 transition-colors">
+                <div className="col-span-1">
+                  <button className="flex items-center justify-center gap-2 border-2 border-green-600 bg-green-50 rounded-lg px-4 py-3 hover:bg-green-100 transition-colors w-full">
+                    {" "}
+                    {/* w-full ici */}
                     <Square className="w-5 h-5 text-gray-700" />
                     <span className="text-sm font-medium text-gray-900">
                       18 M²
                     </span>
                   </button>
                 </div>
-
                 {/* Location */}
-                <div className="w-full col-span-1">
-                  <button className="flex items-center gap-2 border-2 border-green-600 bg-green-50 rounded-lg px-4 py-3 hover:bg-green-100 transition-colors">
+                <div className="col-span-1">
+                  <button className="flex items-center justify-center gap-2 border-2 border-green-600 bg-green-50 rounded-lg px-4 py-3 hover:bg-green-100 transition-colors w-full">
                     <MapPin className="w-5 h-5 text-gray-700" />
                     <span className="text-sm font-medium text-gray-900">
                       City Center
                     </span>
                   </button>
                 </div>
-
                 {/* Forest */}
-                <div className="w-full col-span-1">
-                  <button className="flex items-center gap-2 border-2 border-green-600 bg-green-50 rounded-lg px-4 py-3 hover:bg-green-100 transition-colors col-span-2">
+                <div className="col-span-1">
+                  <button className="flex items-center justify-center gap-2 border-2 border-green-600 bg-green-50 rounded-lg px-4 py-3 hover:bg-green-100 transition-colors w-full">
                     <Trees className="w-5 h-5 text-gray-700" />
                     <span className="text-sm font-medium text-gray-900">
                       Next To Forest
                     </span>
                   </button>
                 </div>
+              </div>
 
-                {/* Bathroom */}
-                <div className=" w-full col-span-1">
-                  <button className="flex items-center gap-2 border-2 border-green-600 bg-green-50 rounded-lg px-4 py-3 hover:bg-green-100 transition-colors">
+              {/* Bathroom */}
+              <div className="grid grid-cols-2  items-center gap-4 w-full my-4">
+                <div className="col-span-1">
+                  <button className="flex items-center justify-center gap-2 border-2 border-green-600 bg-green-50 rounded-lg px-4 py-3 hover:bg-green-100 transition-colors w-full">
                     <Bath className="w-5 h-5 text-gray-700" />
                     <span className="text-sm font-medium text-gray-900">
                       En-Suite Bath Room
                     </span>
                   </button>
                 </div>
-
                 {/* TV */}
-                <div className=" w-full col-span-1">
-                  <button className="flex items-center gap-2 border-2 border-green-600 bg-green-50 rounded-lg px-4 py-3 hover:bg-green-100 transition-colors">
+                <div className="col-span-1">
+                  <button className="flex items-center justify-center gap-2 border-2 border-green-600 bg-green-50 rounded-lg px-4 py-3 hover:bg-green-100 transition-colors w-full">
                     <Tv className="w-5 h-5 text-gray-700" />
                     <span className="text-sm font-medium text-gray-900">
                       Flat-Screen TV
