@@ -86,7 +86,7 @@ const ReviewsCarouselSwiper = () => {
           {/* Scrollable Container */}
           <div
             ref={scrollContainerRef}
-            className="flex gap-4 overflow-x-auto scrollbar-hide px-10 py-2"
+            className="flex gap-4 overflow-x-auto  scrollbar-hide px-10 py-2"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {reviews.map((review) => (
@@ -151,7 +151,7 @@ const ReviewsCarouselSwiper = () => {
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-1.5">
                   <div
-                    className="bg-blue-600 h-1.5 rounded-full transition-all duration-300"
+                    className="bg-blue-600 h-1.5 rounded-full transition-all duration-1000"
                     style={{ width: `${(rating.score / 10) * 100}%` }}
                   ></div>
                 </div>
